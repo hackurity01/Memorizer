@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
-import { View, Switch, StyleSheet, Text } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
-function Header() {
-	const [ isPushOn, setIsPushOn ] = useState(false);
-	const toggleSwitch = () => setIsPushOn((previousState) => !previousState);
-
-	return <View style={styles.container} />;
+function ItemList({ itemList }) {
+	return (
+		<View>
+			{itemList.map((item) => (
+				<View>
+					<TouchableOpacity
+						onPress={() => {
+							console.log(1);
+						}}
+					>
+						<View>
+							<Text>{item.title}</Text>
+						</View>
+					</TouchableOpacity>
+					<View>
+						<Text>{item.description}</Text>
+					</View>
+				</View>
+			))}
+		</View>
+	);
 }
 
-const styles = StyleSheet.create({
-	container: {},
-	logo: {},
-	switch: {}
-});
-
-export default Header;
+export default ItemList;

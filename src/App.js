@@ -1,18 +1,20 @@
 import React from 'react';
-import { Provider as PaperProvider } from 'react-native-paper';
 import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
 
 import Header from './components/Header';
+import ItemList from './components/ItemList';
 
 const App = () => {
 	return (
-		<PaperProvider>
-			<SafeAreaView>
-				<Header />
-				{/* <ItemList memos="memos" :deleteMemo="deleteMemo"/>
-      <AddButton postMemo="postMemo"/> */}
-			</SafeAreaView>
-		</PaperProvider>
+		<SafeAreaView>
+			<Header />
+			<ItemList
+				itemList={[
+					{ title: 'tittitiitle', description: 'descriptiondescription description description descriptiondescription' }
+				]}
+			/>
+			{/* <AddButton postMemo="postMemo" /> */}
+		</SafeAreaView>
 	);
 };
 
