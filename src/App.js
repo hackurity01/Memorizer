@@ -1,24 +1,14 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
-import Header from './components/Header';
-import ItemList from './components/ItemList';
+import Stack from './navigations/Stack';
 
 const App = () => {
 	return (
-		<SafeAreaView>
-			<Header />
-			<ItemList
-				itemList={[
-					{
-						title: 'tittitiitle',
-						description: 'descriptsdf sdfs dffiondasd sdfsdfs escription description description descriptiondescription'
-					}
-				]}
-			/>
-			{/* <AddButton postMemo="postMemo" /> */}
-		</SafeAreaView>
+		<NavigationContainer>
+			<Stack />
+		</NavigationContainer>
 	);
 };
 
