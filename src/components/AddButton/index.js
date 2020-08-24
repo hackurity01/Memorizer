@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function AddButton() {
+function AddButton({ onGoBack }) {
+	const navigation = useNavigation();
+
 	const onClickButton = () => {
-		alert('hou');
+		navigation.navigate('AddMemo', { onGoBack });
 	};
 
 	return (
