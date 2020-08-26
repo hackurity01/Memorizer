@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import { View, TouchableHighlight, StyleSheet, TextInput, Text, SafeAreaView, Button } from 'react-native';
 import AnimatedInput from 'react-native-animated-input';
-import { useNavigation } from '@react-navigation/native';
 
 import { getData, storeData } from '~/lib/asyncStore';
 
-function AddMemoView() {
-	const navigation = useNavigation();
+function AddMemoView({ route, navigation }) {
 	const [ title, setTitle ] = useState('');
 	const [ memo, setMemo ] = useState('');
 
 	const onClickAddButton = () => {
-		console.log('onClickAddButton', title, memo);
 		getData('memoList').then((data) => {
 			const newData = JSON.parse(data) || [];
-			console.log('newData', newData);
 			newData.push({ title, memo });
-			console.log(data, newData);
 			storeData('memoList', JSON.stringify(newData)).then(() => {
 				alert('Saved!');
 				navigation.goBack();
-				navigation.state.params.onGoBack();
+				route.params.onGoBack();
 			});
 		});
 	};
