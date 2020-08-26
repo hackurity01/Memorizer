@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { SafeAreaView, Button } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '../components/Header';
@@ -11,12 +11,9 @@ function MainView() {
 	const navigation = useNavigation();
 	const [ memoList, setMemoList ] = useState([]);
 
-	console.log('render', memoList);
-
-	const getMomo = useCallback(
+	const getMemo = useCallback(
 		() => {
 			getData('memoList').then((data) => {
-				console.log('getMomo', data);
 				setMemoList(JSON.parse(data) || []);
 			});
 		},
@@ -24,16 +21,18 @@ function MainView() {
 	);
 
 	useEffect(() => {
-		getMomo();
+		getMemo();
 	}, []);
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<Header />
-			<ItemList itemList={memoList} />
+			<ScrollView>
+				<ItemList itemList={memoList} />
+			</ScrollView>
 			<AddButton
 				onGoBack={() => {
-					getMomo();
+					getMemo();
 				}}
 			/>
 		</SafeAreaView>
