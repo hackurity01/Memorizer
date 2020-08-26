@@ -2,27 +2,27 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { View, TouchableOpacity, StyleSheet, Text, Animated } from 'react-native';
 
-function Item({ title, description }) {
+function Item({ title, memo }) {
 	const [ isMeasured, setIsMeasured ] = useState(false);
-	const [ descriptionHeight ] = useState(new Animated.Value(0));
+	const [ memoHeight ] = useState(new Animated.Value(0));
 	const originHeight = useRef(0);
-	const clonedDescriptionRef = useRef(null);
+	const clonedMemoRef = useRef(null);
 
 	if (Platform.OS === 'android') {
 		UIManager.setLayoutAnimationEnabledExperimental(true);
 	}
 
 	onClickTitle = () => {
-		console.log(descriptionHeight);
+		console.log(memoHeight);
 		let toValue;
 
-		if (descriptionHeight._value) {
+		if (memoHeight._value) {
 			toValue = 0;
 		} else {
 			toValue = originHeight.current;
 		}
 
-		Animated.timing(descriptionHeight, {
+		Animated.timing(memoHeight, {
 			toValue,
 			duration: 300,
 			useNativeDriver: false
@@ -30,8 +30,8 @@ function Item({ title, description }) {
 	};
 
 	function getContentHeight() {
-		if (clonedDescriptionRef && !isMeasured) {
-			clonedDescriptionRef.current.measure((ox, oy, width, height, px, py) => {
+		if (clonedMemoRef && !isMeasured) {
+			clonedMemoRef.current.measure((ox, oy, width, height, px, py) => {
 				originHeight.current = height + 1;
 				setIsMeasured(true);
 			});
@@ -50,13 +50,13 @@ function Item({ title, description }) {
 				</View>
 			</TouchableOpacity>
 			<View>
-				<Animated.View style={[ styles.description, { height: descriptionHeight } ]}>
-					<Text style={styles.descriptionText}>{description}</Text>
+				<Animated.View style={[ styles.memo, { height: memoHeight } ]}>
+					<Text style={styles.memoText}>{memo}</Text>
 				</Animated.View>
 			</View>
 			{!isMeasured && (
-				<View style={styles.transparentClone} ref={clonedDescriptionRef}>
-					<Text>{description}</Text>
+				<View style={styles.transparentClone} ref={clonedMemoRef}>
+					<Text>{memo}</Text>
 				</View>
 			)}
 		</View>
@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
 		paddingBottom: 12,
 		paddingLeft: 24
 	},
-	description: {
+	memo: {
 		width: '100%',
 		overflow: 'hidden',
 		flexDirection: 'row',
 		flexWrap: 'wrap'
 	},
-	descriptionText: {
+	memoText: {
 		paddingTop: 0,
 		paddingRight: 42,
 		paddingBottom: 12,
