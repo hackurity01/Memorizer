@@ -25,7 +25,7 @@ function MainView() {
 	}, []);
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<Header />
 			<ScrollView>
 				<ItemList itemList={memoList} />

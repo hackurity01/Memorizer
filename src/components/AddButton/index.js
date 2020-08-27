@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/AntDesign';
+
+Icon.loadFont();
 
 function AddButton({ onGoBack }) {
 	const navigation = useNavigation();
@@ -12,7 +15,7 @@ function AddButton({ onGoBack }) {
 	return (
 		<TouchableWithoutFeedback onPress={onClickButton}>
 			<View style={styles.container}>
-				<Text>+</Text>
+				<Icon name="plus" size={20} color="#222" />
 			</View>
 		</TouchableWithoutFeedback>
 	);
@@ -26,10 +29,20 @@ const styles = StyleSheet.create({
 		right: 20,
 		width: 50,
 		height: 50,
-		backgroundColor: 'blue',
+		backgroundColor: '#fff',
 		borderRadius: 100,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 1
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+
+		elevation: 2
 	}
 });
 
