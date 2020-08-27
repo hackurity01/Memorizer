@@ -11,6 +11,8 @@ target 'Memorizer' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+  pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios'
+
   target 'MemorizerTests' do
     inherit! :complete
     # Pods for testing
